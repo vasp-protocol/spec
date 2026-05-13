@@ -1,0 +1,41 @@
+{
+  "version": "0.1",
+  "state_id": "phash:7c2f91ab04d18e33",
+  "screen_type": "error",
+  "confidence": "high",
+  "workflow_context": "Payment failed - retry is available",
+  "ui_tree": [
+    {
+      "id": "el_001",
+      "type": "text",
+      "text": "Payment failed",
+      "cx": 420,
+      "cy": 180,
+      "w": 210,
+      "h": 36
+    },
+    {
+      "id": "el_002",
+      "type": "button",
+      "text": "Retry payment",
+      "cx": 420,
+      "cy": 310,
+      "w": 160,
+      "h": 44
+    }
+  ],
+  "affordances": [
+    {
+      "action": "click",
+      "target_id": "el_002",
+      "label": "Retry payment",
+      "cx": 420,
+      "cy": 310
+    }
+  ],
+  "metadata": {
+    "image_width": 800,
+    "image_height": 600,
+    "producer": "farscry"
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vasp.dev/schema/vasp-0.1.schema.json",
+  "title": "VASP 0.1 Document",
+  "type": "object",
+  "required": ["version", "state_id", "screen_type", "confidence", "ui_tree"],
+  "properties": {
+    "version": {
+      "const": "0.1"
+    },
+    "state_id": {
+      "type": "string",
+      "pattern": "^phash:[0-9a-f]{16}$"
+    },
+    "screen_type": {
+      "enum": ["error", "config", "terminal", "conversation", "ui", "unknown"]
+    },
+    "confidence": {
+      "enum": ["high", "medium", "low", "none"]
+    },
+    "workflow_context": {
+      "type": "string",
+      "maxLength": 240
+    },
+    "ui_tree": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/uiElement"
+      }
+    },
+    "affordances": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/affordance"
+      },
+      "default": []
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "uiElement": {
+      "type": "object",
+      "required": ["id", "type", "text", "cx", "cy", "w", "h"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "enum": ["text", "button", "input", "link", "checkbox", "radio", "select", "image", "icon", "unknown"]
+        },
+        "text": {
+          "type": "string"
+        },
+        "cx": {
+          "type": "number"
+        },
+        "cy": {
+          "type": "number"
+        },
+        "w": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "h": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "affordance": {
+      "type": "object",
+      "required": ["action", "target_id", "label", "cx", "cy"],
+      "properties": {
+        "action": {
+          "enum": ["click", "type", "select", "toggle", "wait"]
+        },
+        "target_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string"
+        },
+        "cx": {
+          "type": "number"
+        },
+        "cy": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
